@@ -4,9 +4,10 @@ var leaf = L
 
 module.exports = 
   
-function () {
+function (mapDivId, lat, lon) {
   
-  var map = window.map 
+ // var map = window.map 
+    var gmfReturn = gmf(mapDivId, lat, lon)
 
   function onMapClick(e) {
     var popup = L.popup()
@@ -24,5 +25,5 @@ function () {
 
   }
   
-  map.on('click', onMapClick)
+  gmfReturn.map.on('click', onMapClick)
 }

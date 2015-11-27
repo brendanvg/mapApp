@@ -3,12 +3,12 @@ var leaf = L
 
 module.exports = 
   
-function initializeMap (divId,lat,lon) {
+function initializeMap (mapDivId,lat,lon) {
   
   var icon= leaf.divIcon()
   var plotLayers = []
 
-  var map = window.map = new leaf.Map(divId)
+  var map = window.map = new leaf.Map(mapDivId)
   var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   var osmAttrib='Map data © OpenStreetMap contributors';
 
