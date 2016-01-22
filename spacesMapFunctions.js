@@ -30,7 +30,7 @@ function (mapDivId, lat, lon) {
   gmfReturn.map.on('click', onMapClick)
 }
 
-hyperquest('http://localhost:5001/loadMarkers')
+//hyperquest('http://localhost:5001/loadMarkers')
 
 /*.pipe(loadMarkers(data))
 

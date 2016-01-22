@@ -18,7 +18,7 @@ smf(mapDivId, lat, lon)
 var mapMe = document.getElementById('whereAmI')
 // var mapTA = document.getElementById('mapTensionArea')
 
-var stream = hyperquest('localhost:5001/loadMarkers')
-	collect(stream,(err,data)=>{
-		console.log(JSON.stringify(data))
-	})
+hyperquest('localhost:5001/loadMarkers').pipe(process.stdout)
+	// collect(stream,(err,data)=>{
+	// 	console.log(JSON.stringify(data))
+	// })

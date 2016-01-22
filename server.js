@@ -29,7 +29,7 @@ var server = http.createServer(function(req,res){
 
   if (req.url ==='/loadMarkers') {
   	var dbData=[]
-  	db.createReadStream().pipe(res)
+  	return db.createReadStream()
 
   		// .on('data', function (data) {
   		// 	console.log('dataPt'+data)
