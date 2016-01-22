@@ -19,10 +19,10 @@ smf(mapDivId, lat, lon)
 var mapMe = document.getElementById('whereAmI')
 // var mapTA = document.getElementById('mapTensionArea')
 
-var stream = hyperquest('localhost:5001/loadMarkers')
-	collect(stream,(err,data)=>{
-		console.log(JSON.stringify(data))
-	})
+// hyperquest('localhost:5001/loadMarkers').pipe(process.stdout)
+	// collect(stream,(err,data)=>{
+	// 	console.log(JSON.stringify(data))
+	// })
 
 },{"./genericMapFunctions.js":2,"./spacesMapFunctions.js":44,"collect-stream":3,"hyperquest":20}],2:[function(require,module,exports){
 require('leaflet')
@@ -16204,7 +16204,7 @@ function (mapDivId, lat, lon) {
   gmfReturn.map.on('click', onMapClick)
 }
 
-hyperquest('http://localhost:5001/loadMarkers')
+//hyperquest('http://localhost:5001/loadMarkers')
 
 /*.pipe(loadMarkers(data))
 

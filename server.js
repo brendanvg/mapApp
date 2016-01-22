@@ -27,23 +27,23 @@ var server = http.createServer(function(req,res){
     
   }
 
-  if (req.url ==='/loadMarkers') {
+  function loadMarkers () {
   	var dbData=[]
-  	return db.createReadStream()
-
-  		// .on('data', function (data) {
-  		// 	console.log('dataPt'+data)
-  		// 	dbData.push(data)
-  		// })
-  		// .on('error', function(err){
-  		// 	console.log(err)
-  		// })
-  		// .on('end', function(){
-  		// 	console.log('dbFullData'+dbData)
-  		// 	res.end()
-  		// })
+  	db.createReadStream()
+  		.on('data', function (data) {
+  			console.log('dataPt'+data)
+  			dbData.push(data)
+  		})
+  		.on('error', function(err){
+  			console.log(err)
+  		})
+  		.on('end', function(){
+  			console.log('dbFullData'+dbData)
+  		})
   }
-  else st(req,res)
+
+  loadMarkers()
+  st(req,res)
 
 }).listen(5001)
 
