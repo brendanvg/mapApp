@@ -19,7 +19,7 @@ function initializeMap (mapDivId,lat,lon) {
   var markers = {}
 
   return {
-   // addMarker: addMarker,
+    addMarker: addMarker,
     getAllMarkers : getAllMarkers,
     geoFindMe : geoFindMe,
     map : map
@@ -27,8 +27,8 @@ function initializeMap (mapDivId,lat,lon) {
   }
 
 
-/*  function addMarker (latlng, markerId, html) {
-    var marker = L.marker([latlng.lat,latlng.lon ]).addTo(map)
+  function addMarker (lat, lng, markerId, html) {
+    var marker = L.marker([lat,lng]).addTo(map)
     
     if (html) {
       marker.bindPopup(html).openPopup()
@@ -38,7 +38,7 @@ function initializeMap (mapDivId,lat,lon) {
     markers.markerId = ""
     } 
  }
-*/
+
 
  function getAllMarkers () {
   return markers

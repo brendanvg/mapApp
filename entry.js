@@ -1,10 +1,11 @@
 var gmf= require('./genericMapFunctions.js') 
 var smf = require ('./spacesMapFunctions.js')
-
+var hyperquest=require('hyperquest')
+var collect = require('collect-stream')
 var mapDivId = document.getElementById('map')
 
-var lat = 37.8
-var lon = -122.269
+var lat = 39.96
+var lon = -75.16
 //Create Map
 // var map1 = gmf(mapId, 37.8, -122.269)
 // window.map1=map1
@@ -17,3 +18,7 @@ smf(mapDivId, lat, lon)
 var mapMe = document.getElementById('whereAmI')
 // var mapTA = document.getElementById('mapTensionArea')
 
+var stream = hyperquest('localhost:5001/loadMarkers')
+	collect(stream,(err,data)=>{
+		console.log(JSON.stringify(data))
+	})
