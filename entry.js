@@ -27,3 +27,11 @@ function addMarker2() {
       var markerLabel = document.labelForm.markerLabel.value
       console.log('the Label is!'+ markerLabel)
     }
+
+function addMarker3() {
+	 var markerLabel = document.labelForm.markerLabel.value
+      console.log('the REALEST Label is!'+ markerLabel)
+}
+
+// var formButton = document.getElementById('formButton')
+// formButton.addEventListener('click', addMarker3())
