@@ -1,3 +1,16 @@
+How do I access browserify bundled functions from html?
+  -click on a button (inside a popup) and run a function in bundle.js
+
+WHAT I want to do:  click on the map, add a label,  submitBut -> submitBut callls addMarker
+
+=add event listener inside bundle.js -> doesn't recognize the getElementByID call..... 
+  - window.addMarker = addMArker -> can't find it when call addMarker from html
+  -when onclick event is put in popup, and it is asked to call function, if the function exists in bundle.js, it says it is not defined
+
+--browserify entry.js --s -o public/bundle.js -> make the module global
+
+
+
 inputs a city/town to map
 
 double zooms in

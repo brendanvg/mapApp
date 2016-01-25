@@ -1,7 +1,7 @@
 require('leaflet')
 var leaf = L
 
-module.exports = 
+module.exports =
   
 function initializeMap (mapDivId,lat,lon) {
   
@@ -35,15 +35,13 @@ function initializeMap (mapDivId,lat,lon) {
     window.addMarker2= addMarker2()
     }
 
-  function addMarker (lat, lng, markerId, html) {
+  function addMarker (lat, lng, html) {
     var marker = L.marker([lat,lng]).addTo(map)
     
     if (html) {
       marker.bindPopup(html).openPopup()
-      markers[markerId] = html
     }
     else {
-    markers.markerId = ""
     } 
 
 
