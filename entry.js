@@ -22,3 +22,8 @@ var mapMe = document.getElementById('whereAmI')
 	// collect(stream,(err,data)=>{
 	// 	console.log(JSON.stringify(data))
 	// })
+
+function addMarker2() {
+      var markerLabel = document.labelForm.markerLabel.value
+      console.log('the Label is!'+ markerLabel)
+    }

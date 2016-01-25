@@ -24,6 +24,10 @@ var mapMe = document.getElementById('whereAmI')
 	// 	console.log(JSON.stringify(data))
 	// })
 
+function addMarker2() {
+      var markerLabel = document.labelForm.markerLabel.value
+      console.log('the Label is!'+ markerLabel)
+    }
 },{"./genericMapFunctions.js":2,"./spacesMapFunctions.js":44,"collect-stream":3,"hyperquest":20}],2:[function(require,module,exports){
 require('leaflet')
 var leaf = L
@@ -16190,11 +16194,21 @@ function (mapDivId, lat, lon) {
 
     popup
       .setLatLng(e.latlng)
-      .setContent('<form action="/submitMarker" method="POST"><input type="text" name="markerLabel"></input><input type="hidden" name="coords" id="latlngForm" </input><input type="submit" name="submit" value="submit"></input></form>')
+      .setContent('<form name="labelForm" id="labelFormId" onsubmit="return addMarker2()"><input type="text" name="markerLabel"></input><input type="hidden" name="coords" id="latlngForm" </input><input type="submit" name="submit" value="submit"></input></form>')
       .openOn(map) //used in leaflet docs as similar to addTo(map)
 
     document.getElementById('latlngForm').value=[latlng.lat,latlng.lng]
+
+    function addMarker2() {
+      var markerLabel = document.labelForm.markerLabel.value
+      console.log('the Label is!'+ markerLabel)
+    }
     return latlng    
+  }
+
+  function addMarker2() {
+      var markerLabel = document.labelForm.markerLabel.value
+      console.log('the Label is!'+ markerLabel)
   }
 
   function organizeTensionToPeaceDay (){
@@ -16202,6 +16216,7 @@ function (mapDivId, lat, lon) {
   }
   
   gmfReturn.map.on('click', onMapClick)
+
 }
 
 //hyperquest('http://localhost:5001/loadMarkers')

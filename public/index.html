@@ -15,6 +15,17 @@
   <input type="submit" name="submit" value="Submit"></input>
 </form>
 
+<form name="inputForm2">
+<input value='input something!' name="realInput"></input>
+<button type='button' onclick='return doSomething()'></button>
+</form>
+<script>
+function doSomething(){
+  var input=document.inputForm2.realInput.value
+  console.log(input)
+}
+</script>
+
    <div id = wrapper>
     <h1> Spaces </h1>
     <h2> Map Our City's Tension </h2> 
