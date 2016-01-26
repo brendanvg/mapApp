@@ -11,16 +11,32 @@ function (mapDivId, lat, lon) {
  // var map = window.map 
     var gmfReturn = gmf(mapDivId, lat, lon)
 
+    //var form = createElement(form)
+
   function onMapClick(e) {
     var popup = L.popup()
     var latlng = e.latlng
 
+
+    var form = document.createElement('form')
+    var button = document.createElement('button')
+    button.type="button"
+    var input = document.createElement('input')
+    form.appendChild(input)
+    form.appendChild(button)
+    button.addEventListener('click', function(evt){
+       console.log('wooooo')
+        gmfReturn.addMarker(e.latlng.lat, e.latlng.lng, '<h1>'+input.value+'</h1>') 
+
+    })
+    // add form child elements...
+
     popup
       .setLatLng(e.latlng)
-      .setContent('<form name="labelForm" id="labelFormId"><input type="text" name="markerLabel"></input><input type="hidden" name="coords" id="latlngForm" </input><button type="button" name="submit" id="submitBut" value="submit" onclick="return addMarker3()"></button></form><script>document.getElementById("submitBut").addEventListener("click", function() {console.log("2oooo")})</script>')
+      .setContent(form)
       .openOn(map) //used in leaflet docs as similar to addTo(map)
 
-    document.getElementById('latlngForm').value=[latlng.lat,latlng.lng]
+    //document.getElementById('latlngForm').value=[latlng.lat,latlng.lng]
 
     function addMarker2() {
       var markerLabel = document.labelForm.markerLabel.value
@@ -38,7 +54,6 @@ function (mapDivId, lat, lon) {
   }
   
   gmfReturn.map.on('click', onMapClick)
- gmfReturn.addMarker(39.96, -75.16, '<h1>This is Dr. Evils HQ</h1>') 
 
 
 
@@ -52,13 +67,16 @@ function addMarker22(e) {
 }
 
 
+//  
+
 //hyperquest('http://localhost:5001/loadMarkers')
 
 /*.pipe(loadMarkers(data))
 
 function loadMarkers (data) {
   console.log(data)
-  forEach (fn [ ,i ]) {
+  for each (i in ) {
+
   
   }
 

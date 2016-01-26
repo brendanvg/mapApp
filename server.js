@@ -27,7 +27,7 @@ var server = http.createServer(function(req,res){
     
   }
 
-  function loadMarkers () {
+  function loadMarkers (cb) {
   	var dbData=[]
   	db.createReadStream()
   		.on('data', function (data) {
@@ -39,8 +39,14 @@ var server = http.createServer(function(req,res){
   		})
   		.on('end', function(){
   			console.log('dbFullData'+dbData)
+        return dbData
   		})
   }
+
+
+//pipe, to concat stream, and then its not in stream form .. JSON...
+//cb(dbData)
+
 
   loadMarkers()
   st(req,res)

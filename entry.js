@@ -13,7 +13,7 @@ var lon = -75.16
 smf(mapDivId, lat, lon)
 
 //AddMarker
- gmf.addMarker(39.96, -75.16, '<h1>This is Omni</h1>') 
+ //gmf.addMarker(39.96, -75.16, '<h1>This is Omni</h1>') 
 
 var mapMe = document.getElementById('whereAmI')
 // var mapTA = document.getElementById('mapTensionArea')
@@ -33,6 +33,7 @@ function addMarker3() {
       console.log('the REALEST Label is!'+ markerLabel)
 }
 
+function addMarker3(){gmf.addMarker(39.96,-75.16,"<h1>heee</h1>")}
 
 
 // var formButton = document.getElementById('formButton')
