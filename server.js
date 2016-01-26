@@ -15,41 +15,56 @@ var server = http.createServer(function(req,res){
     	var markerLabel= params.markerLabel
     	var coords= params.coords
     	console.log('value'+markerLabel)
+      console.log('coords'+coords)
+
       db.put(coords, markerLabel, function(err){
       	if (err) return console.log(err)
+        console.log('put coords', coords, markerLabel)
+        cb()
       })
-      db.get(coords, function (err, value) {
-      	if (err) return console.log(err)
-      	else console.log('get value'+value)
+
+      // db.get(coords, function (err, value) {
+      // 	if (err) return console.log(err)
+      // 	else console.log('get value'+value)
+      // })
+
+      function cb() {
+      res.writeHead(302, {
+        'Location':'localhost:5001'
       })
-	  res.end()
+      res.end()
+      } 
+	  
     })
     
   }
+  else st(req,res)
 
-  function loadMarkers (cb) {
-  	var dbData=[]
-  	db.createReadStream()
-  		.on('data', function (data) {
-  			console.log('dataPt'+data)
-  			dbData.push(data)
-  		})
-  		.on('error', function(err){
-  			console.log(err)
-  		})
-  		.on('end', function(){
-  			console.log('dbFullData'+dbData)
-        return dbData
-  		})
-  }
+
+  // function loadMarkers (cb) {
+  // 	var dbData=[]
+  // 	db.createReadStream()
+  // 		.on('data', function (data) {
+  // 			console.log('dataPt'+data)
+  // 			dbData.push(data)
+  // 		})
+  // 		.on('error', function(err){
+  // 			console.log(err)
+  // 		})
+  // 		.on('end', function(){
+  // 			console.log('dbFullData'+dbData)
+  //       return dbData
+  // 		})
+  // }
 
 
 //pipe, to concat stream, and then its not in stream form .. JSON...
 //cb(dbData)
 
+  
 
-  loadMarkers()
-  st(req,res)
+  //loadMarkers()
+
 
 }).listen(5001)
 

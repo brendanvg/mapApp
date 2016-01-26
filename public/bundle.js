@@ -7,38 +7,18 @@ var mapDivId = document.getElementById('map')
 
 var lat = 39.96
 var lon = -75.16
-//Create Map
- //var map1 = gmf(mapId, 39.96, -75.16)
-// window.map1=map1
 
 smf(mapDivId, lat, lon)
 
-//AddMarker
- //gmf.addMarker(39.96, -75.16, '<h1>This is Omni</h1>') 
-
 var mapMe = document.getElementById('whereAmI')
-// var mapTA = document.getElementById('mapTensionArea')
 
 // hyperquest('localhost:5001/loadMarkers').pipe(process.stdout)
 	// collect(stream,(err,data)=>{
 	// 	console.log(JSON.stringify(data))
 	// })
 
-function addMarker2() {
-      var markerLabel = document.labelForm.markerLabel.value
-      console.log('the Label is!'+ markerLabel)
-    }
-
-function addMarker3() {
-	 var markerLabel = document.labelForm.markerLabel.value
-      console.log('the REALEST Label is!'+ markerLabel)
-}
-
-function addMarker3(){gmf.addMarker(39.96,-75.16,"<h1>heee</h1>")}
 
 
-// var formButton = document.getElementById('formButton')
-// formButton.addEventListener('click', addMarker3())
 
 },{"./genericMapFunctions.js":2,"./spacesMapFunctions.js":48,"collect-stream":3,"hyperquest":20}],2:[function(require,module,exports){
 require('leaflet')
@@ -66,29 +46,17 @@ function initializeMap (mapDivId,lat,lon) {
     getAllMarkers : getAllMarkers,
     geoFindMe : geoFindMe,
     map : map,
-    addMarker2: addMarker2
-
-//    plotPolygon : plotPolygon
+//  plotPolygon : plotPolygon
   }
-
-
-  function addMarker2() {
-      var markerLabel = document.labelForm.markerLabel.value
-      console.log('the REALSEST Label is!'+ markerLabel)
-    window.addMarker2= addMarker2()
-    }
 
   function addMarker (lat, lng, html) {
     var marker = L.marker([lat,lng]).addTo(map)
-    
     if (html) {
       marker.bindPopup(html).openPopup()
     }
     else {
     } 
-
-
- }
+  }
 
 
  function getAllMarkers () {
@@ -16303,66 +16271,61 @@ module.exports =
   
 function (mapDivId, lat, lon) {
   
- // var map = window.map 
     var gmfReturn = gmf(mapDivId, lat, lon)
-
-    //var form = createElement(form)
 
   function onMapClick(e) {
     var popup = L.popup()
     var latlng = e.latlng
 
-
     var form = document.createElement('form')
-    var button = document.createElement('button')
-    button.type="button"
+    form.method = 'POST'
+    form.action='/submitMarker'
+
+    var inputCoords = document.createElement('input')
+    inputCoords.type = 'hidden'
+    inputCoords.name='coords'
+    inputCoords.value= [e.latlng.lat, e.latlng.lng]
+
     var input = document.createElement('input')
+    input.name='markerLabel'
+
+    var button = document.createElement('button')
+   // button.type="button"
+
+
     form.appendChild(input)
+    form.appendChild(inputCoords)
     form.appendChild(button)
     button.addEventListener('click', function(evt){
        console.log('wooooo')
         gmfReturn.addMarker(e.latlng.lat, e.latlng.lng, '<h1>'+input.value+'</h1>') 
 
+      // hyperquest
     })
-    // add form child elements...
 
     popup
       .setLatLng(e.latlng)
       .setContent(form)
-      .openOn(map) //used in leaflet docs as similar to addTo(map)
-
-    //document.getElementById('latlngForm').value=[latlng.lat,latlng.lng]
+      .openOn(map) 
 
     function addMarker2() {
       var markerLabel = document.labelForm.markerLabel.value
       console.log('the Label is!'+ markerLabel)
     }
     return latlng    
-  
-    //document.getElementById('submitBut').addEventListener('click',console.log('2oooo'))
   }
 
   
 
   function organizeTensionToPeaceDay (){
-
+    //the idea is that people would be trying to resolve points of tension together
   }
   
   gmfReturn.map.on('click', onMapClick)
 
-
-
-  var clicked = listen('#submitBut', 'click')
-function addMarker22(e) {
-      var markerLabel = document.labelForm.markerLabel.value
-      console.log('the Label is!'+ markerLabel)
-  }
-  clicked(addMarker22)
-
 }
 
 
-//  
 
 //hyperquest('http://localhost:5001/loadMarkers')
 
@@ -16372,9 +16335,7 @@ function loadMarkers (data) {
   console.log(data)
   for each (i in ) {
 
-  
   }
-
   //gmfReturn.addMarker()
 }
 */

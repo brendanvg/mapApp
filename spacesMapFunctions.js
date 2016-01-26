@@ -8,66 +8,61 @@ module.exports =
   
 function (mapDivId, lat, lon) {
   
- // var map = window.map 
     var gmfReturn = gmf(mapDivId, lat, lon)
-
-    //var form = createElement(form)
 
   function onMapClick(e) {
     var popup = L.popup()
     var latlng = e.latlng
 
-
     var form = document.createElement('form')
-    var button = document.createElement('button')
-    button.type="button"
+    form.method = 'POST'
+    form.action='/submitMarker'
+
+    var inputCoords = document.createElement('input')
+    inputCoords.type = 'hidden'
+    inputCoords.name='coords'
+    inputCoords.value= [e.latlng.lat, e.latlng.lng]
+
     var input = document.createElement('input')
+    input.name='markerLabel'
+
+    var button = document.createElement('button')
+   // button.type="button"
+
+
     form.appendChild(input)
+    form.appendChild(inputCoords)
     form.appendChild(button)
     button.addEventListener('click', function(evt){
        console.log('wooooo')
         gmfReturn.addMarker(e.latlng.lat, e.latlng.lng, '<h1>'+input.value+'</h1>') 
 
+      // hyperquest
     })
-    // add form child elements...
 
     popup
       .setLatLng(e.latlng)
       .setContent(form)
-      .openOn(map) //used in leaflet docs as similar to addTo(map)
-
-    //document.getElementById('latlngForm').value=[latlng.lat,latlng.lng]
+      .openOn(map) 
 
     function addMarker2() {
       var markerLabel = document.labelForm.markerLabel.value
       console.log('the Label is!'+ markerLabel)
     }
     return latlng    
-  
-    //document.getElementById('submitBut').addEventListener('click',console.log('2oooo'))
   }
 
   
 
   function organizeTensionToPeaceDay (){
-
+    //the idea is that people would be trying to resolve points of tension together
   }
   
   gmfReturn.map.on('click', onMapClick)
 
-
-
-  var clicked = listen('#submitBut', 'click')
-function addMarker22(e) {
-      var markerLabel = document.labelForm.markerLabel.value
-      console.log('the Label is!'+ markerLabel)
-  }
-  clicked(addMarker22)
-
 }
 
 
-//  
 
 //hyperquest('http://localhost:5001/loadMarkers')
 
@@ -77,9 +72,7 @@ function loadMarkers (data) {
   console.log(data)
   for each (i in ) {
 
-  
   }
-
   //gmfReturn.addMarker()
 }
 */

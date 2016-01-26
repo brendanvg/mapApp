@@ -23,29 +23,17 @@ function initializeMap (mapDivId,lat,lon) {
     getAllMarkers : getAllMarkers,
     geoFindMe : geoFindMe,
     map : map,
-    addMarker2: addMarker2
-
-//    plotPolygon : plotPolygon
+//  plotPolygon : plotPolygon
   }
-
-
-  function addMarker2() {
-      var markerLabel = document.labelForm.markerLabel.value
-      console.log('the REALSEST Label is!'+ markerLabel)
-    window.addMarker2= addMarker2()
-    }
 
   function addMarker (lat, lng, html) {
     var marker = L.marker([lat,lng]).addTo(map)
-    
     if (html) {
       marker.bindPopup(html).openPopup()
     }
     else {
     } 
-
-
- }
+  }
 
 
  function getAllMarkers () {
