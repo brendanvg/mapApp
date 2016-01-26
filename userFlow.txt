@@ -10,6 +10,8 @@ WHAT I want to do:  click on the map, add a label,  submitBut -> submitBut calll
 --browserify entry.js --s -o public/bundle.js -> make the module global
 
 
+scp to server.... 
+
 
 inputs a city/town to map
 

@@ -8,13 +8,13 @@ var mapDivId = document.getElementById('map')
 var lat = 39.96
 var lon = -75.16
 //Create Map
-// var map1 = gmf(mapId, 37.8, -122.269)
+ //var map1 = gmf(mapId, 39.96, -75.16)
 // window.map1=map1
 
 smf(mapDivId, lat, lon)
 
 //AddMarker
-// map1.addMarker(37.835004 -122.264125, 'Omni',  '<h1>This is Omni</h1>') 
+ gmf.addMarker(39.96, -75.16, '<h1>This is Omni</h1>') 
 
 var mapMe = document.getElementById('whereAmI')
 // var mapTA = document.getElementById('mapTensionArea')
@@ -16332,6 +16332,9 @@ function (mapDivId, lat, lon) {
   }
   
   gmfReturn.map.on('click', onMapClick)
+ gmfReturn.addMarker(39.96, -75.16, '<h1>This is Dr. Evils HQ</h1>') 
+
+
 
   var clicked = listen('#submitBut', 'click')
 function addMarker22(e) {
@@ -16349,6 +16352,10 @@ function addMarker22(e) {
 
 function loadMarkers (data) {
   console.log(data)
+  forEach (fn [ ,i ]) {
+  
+  }
+
   //gmfReturn.addMarker()
 }
 */

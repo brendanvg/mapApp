@@ -38,6 +38,9 @@ function (mapDivId, lat, lon) {
   }
   
   gmfReturn.map.on('click', onMapClick)
+ gmfReturn.addMarker(39.96, -75.16, '<h1>This is Dr. Evils HQ</h1>') 
+
+
 
   var clicked = listen('#submitBut', 'click')
 function addMarker22(e) {
@@ -55,6 +58,10 @@ function addMarker22(e) {
 
 function loadMarkers (data) {
   console.log(data)
+  forEach (fn [ ,i ]) {
+  
+  }
+
   //gmfReturn.addMarker()
 }
 */
