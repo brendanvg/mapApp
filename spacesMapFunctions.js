@@ -3,12 +3,13 @@ var gmf = require ('./genericMapFunctions.js')
 var leaf = L
 var hyperquest = require('hyperquest')
 var listen = require('listenify')
-
+var collect = require('collect-stream')
+var catS = require('concat-stream')
 module.exports = 
   
 function (mapDivId, lat, lon) {
   
-    var gmfReturn = gmf(mapDivId, lat, lon)
+  var gmfReturn = gmf(mapDivId, lat, lon)
 
   function onMapClick(e) {
     var popup = L.popup()
@@ -52,7 +53,6 @@ function (mapDivId, lat, lon) {
     return latlng    
   }
 
-  
 
   function organizeTensionToPeaceDay (){
     //the idea is that people would be trying to resolve points of tension together
@@ -60,19 +60,30 @@ function (mapDivId, lat, lon) {
   
   gmfReturn.map.on('click', onMapClick)
 
+
+
+
+hyperquest('http://localhost:5001/loadMarkers')
+.pipe(
+  catS(function(data){
+    var x= data.toString()
+    var y= JSON.parse(x)
+    for (i = 0; i < y.length; i++){
+      console.log('key is'+y[i].key+typeof y[i].key)
+      console.log('value is'+y[i].value)
+      var key = y[i].key
+      var value = y[i].value
+      
+
+      var coords= key.split(",")
+      var lat = coords[0]
+      var lon = coords[1]
+      
+      gmfReturn.addMarker(lat,lon,'<h1>'+value+'</h1>')
+    }
+  })
+)
+
 }
 
 
-
-//hyperquest('http://localhost:5001/loadMarkers')
-
-/*.pipe(loadMarkers(data))
-
-function loadMarkers (data) {
-  console.log(data)
-  for each (i in ) {
-
-  }
-  //gmfReturn.addMarker()
-}
-*/

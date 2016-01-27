@@ -3,6 +3,7 @@ var smf = require ('./spacesMapFunctions.js')
 var hyperquest=require('hyperquest')
 var collect = require('collect-stream')
 var mapDivId = document.getElementById('map')
+var catS = require('concat-stream')
 
 var lat = 39.96
 var lon = -75.16
@@ -15,6 +16,16 @@ var mapMe = document.getElementById('whereAmI')
 	// collect(stream,(err,data)=>{
 	// 	console.log(JSON.stringify(data))
 	// })
+
+hyperquest('http://localhost:5001/loadMarkers')
+.pipe(
+  catS(function(data){
+    var x= data.toString()
+    var y= JSON.parse(x)
+    console.log('wooooo555555')
+    console.log(y)
+  })
+)
 
 
 

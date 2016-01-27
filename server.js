@@ -5,7 +5,8 @@ var st = ecstatic('public')
 //var router =require('./router.js')
 var body = require('body/any')
 var level = require ('level')
-var db = level('markers.db', { valueEncoding:'json'})
+var db = level('markers2.db', { valueEncoding:'json'})
+var collect = require('collect-stream')
 
 var server = http.createServer(function(req,res){
   // var m = router.match(req.url)
@@ -38,32 +39,19 @@ var server = http.createServer(function(req,res){
     })
     
   }
+
+  else if (req.url === '/loadMarkers') {
+    // var dbData=[]
+    var stream = db.createReadStream()
+    collect(stream, (err, data) => {
+      res.writeHead(200, {'content-type': 'application/JSON'})
+      res.end(JSON.stringify(data))
+    })
+  }
+
+
   else st(req,res)
 
-
-  // function loadMarkers (cb) {
-  // 	var dbData=[]
-  // 	db.createReadStream()
-  // 		.on('data', function (data) {
-  // 			console.log('dataPt'+data)
-  // 			dbData.push(data)
-  // 		})
-  // 		.on('error', function(err){
-  // 			console.log(err)
-  // 		})
-  // 		.on('end', function(){
-  // 			console.log('dbFullData'+dbData)
-  //       return dbData
-  // 		})
-  // }
-
-
-//pipe, to concat stream, and then its not in stream form .. JSON...
-//cb(dbData)
-
-  
-
-  //loadMarkers()
 
 
 }).listen(5001)
