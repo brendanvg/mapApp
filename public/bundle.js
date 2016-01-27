@@ -16452,7 +16452,7 @@ function (mapDivId, lat, lon) {
       var a = document.createElement("a")
       a.href='/delete/'+inputCoords.value
       var delButton = document.createElement("button")
-      var t3 = document.createTextNode("delete1")
+      var t3 = document.createTextNode("delete")
       delButton.appendChild(t3)
       a.appendChild(delButton)
       markerHtml.appendChild(a)
@@ -16512,7 +16512,7 @@ function (mapDivId, lat, lon) {
         var a = document.createElement("a")
         a.href='/delete/'+coords
         var delButton = document.createElement("button")
-        var t3 = document.createTextNode("delete1")
+        var t3 = document.createTextNode("delete")
         delButton.appendChild(t3)
         a.appendChild(delButton)
         markerHtml.appendChild(a)
