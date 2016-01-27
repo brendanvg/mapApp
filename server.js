@@ -5,7 +5,7 @@ var st = ecstatic('public')
 var router =require('./router.js')
 var body = require('body/any')
 var level = require ('level')
-var db = level('markers5.db', { valueEncoding:'json'})
+var db = level('markers6.db', { valueEncoding:'json'})
 var collect = require('collect-stream')
 
 var server = http.createServer(function(req,res){
@@ -24,24 +24,16 @@ var server = http.createServer(function(req,res){
         cb()
       })
 
-      // db.get(coords, function (err, value) {
-      // 	if (err) return console.log(err)
-      // 	else console.log('get value'+value)
-      // })
-
       function cb() {
-      res.writeHead(302, {
-        'Location':'localhost:5001'
-      })
-      res.end()
+        res.writeHead(302, {
+          'Location':'localhost:5001'
+        })
+        res.end()
       } 
-	  
     })
-    
   }
 
   else if (req.url === '/loadMarkers') {
-    // var dbData=[]
     var stream = db.createReadStream()
     collect(stream, (err, data) => {
       res.writeHead(200, {'content-type': 'application/JSON'})
@@ -59,9 +51,8 @@ var server = http.createServer(function(req,res){
   else if (m) {
     m.fn(m, db, req, res)
   }
+
   else st(req,res)
-
-
 
 }).listen(5001)
 
