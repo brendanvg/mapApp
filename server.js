@@ -2,14 +2,14 @@ var http = require('http')
 var fs = require('fs')
 var ecstatic= require('ecstatic')
 var st = ecstatic('public')
-//var router =require('./router.js')
+var router =require('./router.js')
 var body = require('body/any')
 var level = require ('level')
-var db = level('markers2.db', { valueEncoding:'json'})
+var db = level('markers5.db', { valueEncoding:'json'})
 var collect = require('collect-stream')
 
 var server = http.createServer(function(req,res){
-  // var m = router.match(req.url)
+  var m = router.match(req.url)
 
   if (req.url==='/submitMarker' && req.method==='POST'){
     body (req, res, function (err,params) {
@@ -49,7 +49,16 @@ var server = http.createServer(function(req,res){
     })
   }
 
+  else if (req.url === '/delete') {
+    body(req,res, function(err,params){
+      var coords = params.coords
+      console.log('about to delete'+ coords)
+    })
+  }
 
+  else if (m) {
+    m.fn(m, db, req, res)
+  }
   else st(req,res)
 
 
